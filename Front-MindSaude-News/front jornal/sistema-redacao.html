@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Redação | MindSaude</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="sistema-redacao.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">MindSaude - Sistema de Redação</a>
+                <div class="user-info">
+                    <span class="welcome">Bem-vindo, João Silva</span>
+                    <a href="#" class="logout-btn">Sair</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="dashboard-content">
+        <div class="container">
+            <!-- Dashboard Stats -->
+            <section class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">Artigos Publicados</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Rascunhos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Aguardando Revisão</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Action Buttons -->
+            <section class="actions-section">
+                <div class="action-buttons">
+                    <button class="action-btn primary" onclick="showNewPostForm()">
+                        <span class="btn-icon">+</span>
+                        Nova Publicação
+                    </button>
+                    <button class="action-btn" onclick="showMyPosts()">
+                        Minhas Publicações
+                    </button>
+                </div>
+            </section>
+
+            <!-- Container for dynamic sections - FIXED HEIGHT -->
+            <div class="sections-wrapper">
+                <!-- New Post Form -->
+                <section class="form-section" id="newPostForm">
+                    <div class="form-container">
+                        <h2>Nova Publicação</h2>
+                        
+                        <form class="post-form">
+                            <div class="form-group">
+                                <label for="postType">Tipo de Publicação</label>
+                                <select id="postType" name="postType" required>
+                                    <option value="">Selecione o tipo</option>
+                                    <option value="noticia">Notícia</option>
+                                    <option value="artigo">Artigo</option>
+                                    <option value="evento">Evento</option>
+                                    <option value="destaque">Destaque Semanal</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="postTitle">Título</label>
+                                <input type="text" id="postTitle" name="postTitle" placeholder="Digite o título da publicação" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="postCategory">Categoria</label>
+                                <select id="postCategory" name="postCategory" required>
+                                    <option value="">Selecione a categoria</option>
+                                    <option value="saude-mental">Saúde Mental</option>
+                                    <option value="nutricao">Nutrição</option>
+                                    <option value="exercicios">Exercícios</option>
+                                    <option value="sono">Saúde do Sono</option>
+                                    <option value="mindfulness">Mindfulness</option>
+                                    <option value="psicologia">Psicologia</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="postCity">Cidade</label>
+                                <select id="postCity" name="postCity" required>
+                                    <option value="">Selecione a cidade</option>
+                                    <option value="sao-paulo">São Paulo</option>
+                                    <option value="rio-de-janeiro">Rio de Janeiro</option>
+                                    <option value="belo-horizonte">Belo Horizonte</option>
+                                    <option value="brasilia">Brasília</option>
+                                    <option value="salvador">Salvador</option>
+                                    <option value="curitiba">Curitiba</option>
+                                    <option value="todas">Todas as Cidades</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="postImage">Imagem Principal</label>
+                                <div class="file-upload">
+                                    <input type="file" id="postImage" name="postImage" accept="image/*">
+                                    <div class="upload-area" onclick="document.getElementById('postImage').click()">
+                                        <div class="upload-icon">📷</div>
+                                        <p>Clique para selecionar uma imagem</p>
+                                        <small>Formato recomendado: JPG, PNG (máx. 2MB)</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="postExcerpt">Resumo/Descrição</label>
+                                <textarea id="postExcerpt" name="postExcerpt" rows="3" placeholder="Digite um breve resumo da publicação"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="postContent">Conteúdo</label>
+                                <textarea id="postContent" name="postContent" rows="10" placeholder="Digite o conteúdo completo da publicação" required></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="postAuthor">Autor</label>
+                                <input type="text" id="postAuthor" name="postAuthor" placeholder="Nome do autor" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="postDate">Data de Publicação</label>
+                                <input type="date" id="postDate" name="postDate" required>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn-secondary" onclick="hideAllSections()">Cancelar</button>
+                                <button type="button" class="btn-secondary">Salvar Rascunho</button>
+                                <button type="submit" class="btn-primary">Publicar</button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- My Posts Section -->
+                <section class="posts-section" id="myPosts">
+                    <div class="posts-container">
+                        <h2>Minhas Publicações</h2>
+                        
+                        <div class="posts-filter">
+                            <select class="filter-select">
+                                <option value="all">Todas</option>
+                                <option value="published">Publicadas</option>
+                                <option value="draft">Rascunhos</option>
+                                <option value="review">Em Revisão</option>
+                            </select>
+                        </div>
+
+                        <div class="posts-grid">
+                            <div class="post-card">
+                                <div class="post-status published">Publicado</div>
+                                <h3>5 Técnicas de Mindfulness para Alívio do Estresse</h3>
+                                <div class="post-meta">
+                                    <span>Saúde Mental</span> • <span>São Paulo</span> • <span>25/09/2025</span>
+                                </div>
+                                <div class="post-actions">
+                                    <button class="action-link">Editar</button>
+                                    <button class="action-link">Ver</button>
+                                    <button class="action-link delete">Excluir</button>
+                                </div>
+                            </div>
+
+                            <div class="post-card">
+                                <div class="post-status draft">Rascunho</div>
+                                <h3>A Importância do Sono na Saúde Mental</h3>
+                                <div class="post-meta">
+                                    <span>Saúde do Sono</span> • <span>Rio de Janeiro</span> • <span>Rascunho</span>
+                                </div>
+                                <div class="post-actions">
+                                    <button class="action-link">Editar</button>
+                                    <button class="action-link">Publicar</button>
+                                    <button class="action-link delete">Excluir</button>
+                                </div>
+                            </div>
+
+                            <div class="post-card">
+                                <div class="post-status review">Em Revisão</div>
+                                <h3>Yoga: Benefícios para Corpo e Mente</h3>
+                                <div class="post-meta">
+                                    <span>Exercícios</span> • <span>Belo Horizonte</span> • <span>24/09/2025</span>
+                                </div>
+                                <div class="post-actions">
+                                    <button class="action-link">Ver</button>
+                                    <button class="action-link">Editar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Show/Hide sections
+        function showNewPostForm() {
+            hideAllSections();
+            document.getElementById('newPostForm').classList.add('active');
+        }
+
+        function showMyPosts() {
+            hideAllSections();
+            document.getElementById('myPosts').classList.add('active');
+        }
+
+        function hideAllSections() {
+            document.getElementById('newPostForm').classList.remove('active');
+            document.getElementById('myPosts').classList.remove('active');
+        }
+
+        // Form submission
+        document.querySelector('.post-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Publicação enviada com sucesso!');
+            hideAllSections();
+        });
+
+        // File upload preview
+        document.getElementById('postImage').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const uploadArea = document.querySelector('.upload-area');
+                uploadArea.innerHTML = `
+                    <div class="upload-icon">✅</div>
+                    <p>Imagem selecionada: ${file.name}</p>
+                    <small>Clique para alterar</small>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>

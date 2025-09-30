@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dra. Marina Silva - Psicóloga | MindSaude</title>
+    <link rel="icon" type="image/png" href="/assets/logo.png">
+    <link rel="stylesheet" href="profissional.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+    </header>
+
+    <!-- Main Content -->
+    <main class="professional-content">
+        <div class="container">
+            <!-- Professional Profile -->
+            <section class="professional-profile">
+                <div class="profile-header">
+                    <div class="profile-photo">
+                        <div class="photo-placeholder">Foto do Profissional</div>
+                    </div>
+                    
+                    <div class="profile-info">
+                        <h1>Dra. Marina Silva</h1>
+                        <p class="specialty">Psicóloga Clínica</p>
+                        
+                        <!-- Social Media -->
+                        <div class="social-media">
+                            <a href="#" class="social-link">
+                                <img src="/assets/facebook.png" alt="Facebook">
+                            </a>
+                            <a href="#" class="social-link">
+                                <img src="/assets/instagram.png" alt="Instagram">
+                            </a>
+                            <a href="#" class="social-link">
+                                <img src="/assets/whatsapp.png" alt="WhatsApp">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bio -->
+                <div class="bio-section">
+                    <h2>Biografia</h2>
+                    <p>Psicóloga formada pela USP com mais de 8 anos de experiência em terapia cognitivo-comportamental. Especialista em transtornos de ansiedade, depressão e desenvolvimento pessoal.</p>
+                    <p>Acredito que cada pessoa possui recursos internos para superar seus desafios. Meu trabalho é criar um ambiente seguro e acolhedor onde você possa explorar suas questões e desenvolver estratégias eficazes para uma vida mais plena.</p>
+                </div>
+
+                <!-- Professional Info -->
+                <div class="professional-info">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <h3>Localidade</h3>
+                            <p>São Paulo - Vila Madalena</p>
+                        </div>
+                        
+                        <div class="info-item">
+                            <h3>Preço da Consulta</h3>
+                            <p>R$ 150,00</p>
+                        </div>
+                        
+                        <div class="info-item">
+                            <h3>Tipos de Paciente</h3>
+                            <div class="patient-types">
+                                <span class="type-tag">Adultos</span>
+                                <span class="type-tag">Adolescentes</span>
+                                <span class="type-tag">Casais</span>
+                                <span class="type-tag">Famílias</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="schedule-btn">Agendar Consulta</button>
+                </div>
+
+                <!-- Location/Map -->
+                <div class="location-section">
+                    <h2>Localização</h2>
+                    <div class="location-info">
+                        <p><strong>Endereço:</strong> Rua Harmonia, 456 - Vila Madalena, São Paulo/SP</p>
+                        <div class="map-container">
+                            <div class="map-placeholder">
+                                <p>Mapa do Consultório</p>
+                                <button class="map-btn">Ver no Google Maps</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // Botão agendar consulta
+        document.querySelector('.schedule-btn').addEventListener('click', function() {
+            alert('Redirecionando para agendamento...');
+        });
+
+        // Botão do mapa
+        document.querySelector('.map-btn').addEventListener('click', function() {
+            window.open('https://maps.google.com/?q=Rua+Harmonia,456+Vila+Madalena+São+Paulo', '_blank');
+        });
+    </script>
+</body>
+</html>
