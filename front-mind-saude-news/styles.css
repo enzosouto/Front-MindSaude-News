@@ -173,10 +173,45 @@ nav a.active {
 }
 
 /* ============================================
+   FILTRO DE CATEGORIA
+   ============================================ */
+.category-filter {
+    padding: 40px 0 20px;
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid #eee;
+}
+
+.category-filter h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #5e8c81;
+    margin-bottom: 30px;
+}
+
+.category-btn {
+    background: transparent;
+    border: 2px solid #5e8c81;
+    color: #5e8c81;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.category-btn:hover,
+.category-btn.active {
+    background: #5e8c81;
+    color: #FFFFFF;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12pxrgba(94, 140, 129, 0.48);
+}
+
+/* ============================================
    FILTRO DE CIDADES
    ============================================ */
 .city-filter {
-    padding: 40px 0;
+    padding: 20px 0 40px;
     background: rgba(255, 255, 255, 0.9);
     border-bottom: 1px solid #eee;
 }
@@ -997,4 +1032,16 @@ footer {
     .article-card {
         padding: 25px;
     }
+}
+.category-filter {
+    padding: 40px 0 20px;
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid #eee;
+}
+
+.category-filter h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #5e8c81;
+    margin-bottom: 30px;
 }
