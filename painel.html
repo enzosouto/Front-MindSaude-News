@@ -1,0 +1,607 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Notícias - Psicologia & Nutrição</title>
+    <link rel="stylesheet" href="painel.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">Dashboard News</a>
+            <nav>
+                <ul>
+                    <li><a href="#overview" class="active">Visão Geral</a></li>
+                    <li><a href="#articles">Artigos</a></li>
+                    <li><a href="#news">Notícias</a></li>
+                    <li><a href="#events">Eventos</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu" onclick="toggleMobileMenu()">☰</button>
+        </div>
+        <div class="mobile-nav" id="mobileNav">
+            <ul>
+                <li><a href="#overview">Visão Geral</a></li>
+                <li><a href="#articles">Artigos</a></li>
+                <li><a href="#news">Notícias</a></li>
+                <li><a href="#events">Eventos</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Dashboard Content -->
+    <main class="dashboard-main">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div>
+                    <h1>Dashboard Analytics</h1>
+                    <p>Análise completa de Psicologia e Nutrição</p>
+                </div>
+                <div class="date-filter">
+                    <select id="periodFilter" onchange="updateDashboard()">
+                        <option value="7">Últimos 7 dias</option>
+                        <option value="30" selected>Últimos 30 dias</option>
+                        <option value="90">Últimos 90 dias</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Big Numbers Section -->
+            <section id="overview" class="big-numbers-section">
+                <div class="big-numbers-grid">
+                    <div class="big-number-card">
+                        <div class="big-number-icon">📰</div>
+                        <div class="big-number-content">
+                            <span class="big-number-label">Total de Notícias</span>
+                            <span class="big-number-value" data-target="1247">0</span>
+                            <span class="big-number-change positive">+12.5% vs mês anterior</span>
+                        </div>
+                    </div>
+
+                    <div class="big-number-card">
+                        <div class="big-number-icon">📝</div>
+                        <div class="big-number-content">
+                            <span class="big-number-label">Artigos Publicados</span>
+                            <span class="big-number-value" data-target="348">0</span>
+                            <span class="big-number-change positive">+8.3% vs mês anterior</span>
+                        </div>
+                    </div>
+
+                    <div class="big-number-card">
+                        <div class="big-number-icon">🎫</div>
+                        <div class="big-number-content">
+                            <span class="big-number-label">Eventos Cadastrados</span>
+                            <span class="big-number-value" data-target="89">0</span>
+                            <span class="big-number-change positive">+15.2% vs mês anterior</span>
+                        </div>
+                    </div>
+
+                    <div class="big-number-card">
+                        <div class="big-number-icon">👁️</div>
+                        <div class="big-number-content">
+                            <span class="big-number-label">Visualizações Totais</span>
+                            <span class="big-number-value" data-target="456789">0</span>
+                            <span class="big-number-change positive">+23.7% vs mês anterior</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Charts Section -->
+            <section class="charts-section">
+                <div class="charts-grid">
+                    <!-- Gráfico de Linha - Visualizações -->
+                    <div class="chart-card full-width">
+                        <div class="chart-header">
+                            <h3>Visualizações nos Últimos 30 Dias</h3>
+                            <div class="chart-legend">
+                                <span class="legend-item"><span class="legend-dot psicologia"></span>Psicologia</span>
+                                <span class="legend-item"><span class="legend-dot nutricao"></span>Nutrição</span>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="viewsChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Gráfico de Pizza - Distribuição por Categoria -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Distribuição: Psicologia vs Nutrição</h3>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="categoryChart"></canvas>
+                        </div>
+                        <div class="chart-summary">
+                            <div class="summary-item">
+                                <span class="summary-dot psicologia"></span>
+                                <span>Psicologia: 58%</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-dot nutricao"></span>
+                                <span>Nutrição: 42%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gráfico de Barras - Tipos de Conteúdo -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Conteúdo por Categoria</h3>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="contentChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Artigos Insights -->
+            <section id="articles" class="insights-section">
+                <h2 class="section-title">Insights de Artigos</h2>
+                
+                <div class="insights-grid">
+                    <!-- Top Artigos de Psicologia -->
+                    <div class="insight-card">
+                        <h3>Top 5 Artigos - Psicologia</h3>
+                        <div class="ranking-list">
+                            <div class="ranking-item">
+                                <span class="rank psicologia">1</span>
+                                <div class="ranking-content">
+                                    <h4>Ansiedade: Como identificar e lidar</h4>
+                                    <div class="ranking-stats">
+                                        <span>👁️ 12,543 views</span>
+                                        <span>❤️ 892 likes</span>
+                                        <span>💬 156 comentários</span>
+                                    </div>
+                                <div class="total-participants">
+                                    <span class="participants-label">Total Esperado</span>
+                                    <span class="participants-value">6,180+</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comparativo de Performance -->
+                    <div class="insight-card full-width">
+                        <h3>Performance Geral: Psicologia vs Nutrição</h3>
+                        <div class="performance-comparison">
+                            <div class="comparison-row">
+                                <div class="comparison-label">Notícias Publicadas</div>
+                                <div class="comparison-bars">
+                                    <div class="comparison-bar-wrapper">
+                                        <span class="bar-label">Psicologia</span>
+                                        <div class="comparison-bar psicologia" style="width: 58%">
+                                            <span class="bar-value">723</span>
+                                        </div>
+                                    </div>
+                                    <div class="comparison-bar-wrapper">
+                                        <span class="bar-label">Nutrição</span>
+                                        <div class="comparison-bar nutricao" style="width: 42%">
+                                            <span class="bar-value">524</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="comparison-row">
+                                <div class="comparison-label">Artigos Publicados</div>
+                                <div class="comparison-bars">
+                                    <div class="comparison-bar-wrapper">
+                                        <span class="bar-label">Psicologia</span>
+                                        <div class="comparison-bar psicologia" style="width: 55%">
+                                            <span class="bar-value">191</span>
+                                        </div>
+                                    </div>
+                                    <div class="comparison-bar-wrapper">
+                                        <span class="bar-label">Nutrição</span>
+                                        <div class="comparison-bar nutricao" style="width: 45%">
+                                            <span class="bar-value">157</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="comparison-row">
+                                <div class="comparison-label">Eventos Realizados</div>
+                                <div class="comparison-bars">
+                                    <div class="comparison-bar-wrapper">
+                                        <span class="bar-label">Psicologia</span>
+                                        <div class="comparison-bar psicologia" style="width: 62%">
+                                            <span class="bar-value">55</span>
+                                        </div>
+                                    </div>
+                                    <div class="comparison-bar-wrapper">
+                                        <span class="bar-label">Nutrição</span>
+                                        <div class="comparison-bar nutricao" style="width: 38%">
+                                            <span class="bar-value">34</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="comparison-row">
+                                <div class="comparison-label">Total de Visualizações</div>
+                                <div class="comparison-bars">
+                                    <div class="comparison-bar-wrapper">
+                                        <span class="bar-label">Psicologia</span>
+                                        <div class="comparison-bar psicologia" style="width: 54%">
+                                            <span class="bar-value">246K</span>
+                                        </div>
+                                    </div>
+                                    <div class="comparison-bar-wrapper">
+                                        <span class="bar-label">Nutrição</span>
+                                        <div class="comparison-bar nutricao" style="width: 46%">
+                                            <span class="bar-value">211K</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // Toggle Mobile Menu
+        function toggleMobileMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            mobileNav.style.display = mobileNav.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Update Dashboard (filtro de período)
+        function updateDashboard() {
+            console.log('Dashboard atualizado');
+        }
+
+        // Animate Big Numbers
+        function animateValue(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                element.textContent = value.toLocaleString('pt-BR');
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Initialize Big Numbers Animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const bigNumbers = document.querySelectorAll('.big-number-value');
+            bigNumbers.forEach(element => {
+                const target = parseInt(element.getAttribute('data-target'));
+                animateValue(element, 0, target, 2000);
+            });
+
+            // Initialize Charts
+            createViewsChart();
+            createCategoryChart();
+            createContentChart();
+            createHourlyChart();
+        });
+
+        // Gráfico de Visualizações (Linha)
+        function createViewsChart() {
+            const canvas = document.getElementById('viewsChart');
+            const ctx = canvas.getContext('2d');
+            
+            const width = canvas.parentElement.offsetWidth;
+            const height = 300;
+            canvas.width = width;
+            canvas.height = height;
+
+            const padding = 50;
+            const chartWidth = width - padding * 2;
+            const chartHeight = height - padding * 2;
+
+            // Dados
+            const days = ['01', '05', '10', '15', '20', '25', '30'];
+            const psicologiaData = [12000, 15000, 18000, 16000, 22000, 25000, 28000];
+            const nutricaoData = [10000, 13000, 14000, 17000, 19000, 21000, 23000];
+
+            const maxValue = Math.max(...psicologiaData, ...nutricaoData);
+            const stepX = chartWidth / (days.length - 1);
+            const scaleY = chartHeight / maxValue;
+
+            // Limpar canvas
+            ctx.clearRect(0, 0, width, height);
+
+            // Grid
+            ctx.strokeStyle = '#e0e0e0';
+            ctx.lineWidth = 1;
+            for (let i = 0; i <= 5; i++) {
+                const y = padding + (chartHeight / 5) * i;
+                ctx.beginPath();
+                ctx.moveTo(padding, y);
+                ctx.lineTo(width - padding, y);
+                ctx.stroke();
+            }
+
+            // Eixos
+            ctx.strokeStyle = '#666';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(padding, padding);
+            ctx.lineTo(padding, height - padding);
+            ctx.lineTo(width - padding, height - padding);
+            ctx.stroke();
+
+            // Labels do eixo Y
+            ctx.fillStyle = '#666';
+            ctx.font = '12px Arial';
+            ctx.textAlign = 'right';
+            for (let i = 0; i <= 5; i++) {
+                const value = (maxValue / 5) * (5 - i);
+                const y = padding + (chartHeight / 5) * i;
+                ctx.fillText(Math.round(value / 1000) + 'K', padding - 10, y + 5);
+            }
+
+            // Labels do eixo X
+            ctx.textAlign = 'center';
+            days.forEach((day, i) => {
+                const x = padding + stepX * i;
+                ctx.fillText(day, x, height - padding + 20);
+            });
+
+            // Linha Psicologia
+            ctx.strokeStyle = '#6b4c9a';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            psicologiaData.forEach((value, i) => {
+                const x = padding + stepX * i;
+                const y = height - padding - (value * scaleY);
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            });
+            ctx.stroke();
+
+            // Pontos Psicologia
+            ctx.fillStyle = '#6b4c9a';
+            psicologiaData.forEach((value, i) => {
+                const x = padding + stepX * i;
+                const y = height - padding - (value * scaleY);
+                ctx.beginPath();
+                ctx.arc(x, y, 5, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            // Linha Nutrição
+            ctx.strokeStyle = '#4a9d5f';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            nutricaoData.forEach((value, i) => {
+                const x = padding + stepX * i;
+                const y = height - padding - (value * scaleY);
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            });
+            ctx.stroke();
+
+            // Pontos Nutrição
+            ctx.fillStyle = '#4a9d5f';
+            nutricaoData.forEach((value, i) => {
+                const x = padding + stepX * i;
+                const y = height - padding - (value * scaleY);
+                ctx.beginPath();
+                ctx.arc(x, y, 5, 0, Math.PI * 2);
+                ctx.fill();
+            });
+        }
+
+        // Gráfico de Pizza - Categorias
+        function createCategoryChart() {
+            const canvas = document.getElementById('categoryChart');
+            const ctx = canvas.getContext('2d');
+            
+            const size = Math.min(canvas.parentElement.offsetWidth, 300);
+            canvas.width = size;
+            canvas.height = size;
+
+            const centerX = size / 2;
+            const centerY = size / 2;
+            const radius = Math.min(size / 2 - 20, 120);
+
+            // Dados
+            const psicologia = 58;
+            const nutricao = 42;
+            const total = psicologia + nutricao;
+
+            // Psicologia
+            ctx.fillStyle = '#6b4c9a';
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY);
+            ctx.arc(centerX, centerY, radius, 0, (psicologia / total) * Math.PI * 2);
+            ctx.closePath();
+            ctx.fill();
+
+            // Nutrição
+            ctx.fillStyle = '#4a9d5f';
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY);
+            ctx.arc(centerX, centerY, radius, (psicologia / total) * Math.PI * 2, Math.PI * 2);
+            ctx.closePath();
+            ctx.fill();
+
+            // Círculo central (efeito donut)
+            ctx.fillStyle = '#fff';
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius * 0.6, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Texto central
+            ctx.fillStyle = '#333';
+            ctx.font = 'bold 24px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('100%', centerX, centerY);
+        }
+
+        // Gráfico de Barras - Conteúdo
+        function createContentChart() {
+            const canvas = document.getElementById('contentChart');
+            const ctx = canvas.getContext('2d');
+            
+            const width = canvas.parentElement.offsetWidth;
+            const height = 300;
+            canvas.width = width;
+            canvas.height = height;
+
+            const padding = 50;
+            const chartWidth = width - padding * 2;
+            const chartHeight = height - padding * 2;
+
+            // Dados
+            const categories = ['Notícias', 'Artigos', 'Eventos'];
+            const psicologiaData = [723, 191, 55];
+            const nutricaoData = [524, 157, 34];
+
+            const maxValue = Math.max(...psicologiaData, ...nutricaoData);
+            const barWidth = chartWidth / (categories.length * 3);
+            const scaleY = chartHeight / maxValue;
+
+            // Limpar canvas
+            ctx.clearRect(0, 0, width, height);
+
+            // Grid
+            ctx.strokeStyle = '#e0e0e0';
+            ctx.lineWidth = 1;
+            for (let i = 0; i <= 5; i++) {
+                const y = padding + (chartHeight / 5) * i;
+                ctx.beginPath();
+                ctx.moveTo(padding, y);
+                ctx.lineTo(width - padding, y);
+                ctx.stroke();
+            }
+
+            // Eixos
+            ctx.strokeStyle = '#666';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(padding, padding);
+            ctx.lineTo(padding, height - padding);
+            ctx.lineTo(width - padding, height - padding);
+            ctx.stroke();
+
+            // Labels do eixo Y
+            ctx.fillStyle = '#666';
+            ctx.font = '12px Arial';
+            ctx.textAlign = 'right';
+            for (let i = 0; i <= 5; i++) {
+                const value = (maxValue / 5) * (5 - i);
+                const y = padding + (chartHeight / 5) * i;
+                ctx.fillText(Math.round(value), padding - 10, y + 5);
+            }
+
+            // Barras
+            categories.forEach((category, i) => {
+                const groupX = padding + (chartWidth / categories.length) * i + barWidth;
+                
+                // Barra Psicologia
+                const psicHeight = psicologiaData[i] * scaleY;
+                ctx.fillStyle = '#6b4c9a';
+                ctx.fillRect(groupX, height - padding - psicHeight, barWidth, psicHeight);
+
+                // Barra Nutrição
+                const nutriHeight = nutricaoData[i] * scaleY;
+                ctx.fillStyle = '#4a9d5f';
+                ctx.fillRect(groupX + barWidth + 5, height - padding - nutriHeight, barWidth, nutriHeight);
+
+                // Label da categoria
+                ctx.fillStyle = '#666';
+                ctx.textAlign = 'center';
+                ctx.fillText(category, groupX + barWidth, height - padding + 20);
+            });
+        }
+
+        // Gráfico por Hora
+        function createHourlyChart() {
+            const canvas = document.getElementById('hourlyChart');
+            const ctx = canvas.getContext('2d');
+            
+            const width = canvas.parentElement.offsetWidth;
+            const height = 250;
+            canvas.width = width;
+            canvas.height = height;
+
+            const padding = 40;
+            const chartWidth = width - padding * 2;
+            const chartHeight = height - padding * 2;
+
+            // Dados (publicações por hora)
+            const hours = ['6h', '9h', '12h', '15h', '18h', '21h'];
+            const publications = [15, 45, 78, 92, 65, 28];
+
+            const maxValue = Math.max(...publications);
+            const barWidth = (chartWidth / hours.length) * 0.6;
+            const stepX = chartWidth / hours.length;
+            const scaleY = chartHeight / maxValue;
+
+            // Limpar canvas
+            ctx.clearRect(0, 0, width, height);
+
+            // Grid
+            ctx.strokeStyle = '#e0e0e0';
+            ctx.lineWidth = 1;
+            for (let i = 0; i <= 5; i++) {
+                const y = padding + (chartHeight / 5) * i;
+                ctx.beginPath();
+                ctx.moveTo(padding, y);
+                ctx.lineTo(width - padding, y);
+                ctx.stroke();
+            }
+
+            // Eixos
+            ctx.strokeStyle = '#666';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(padding, padding);
+            ctx.lineTo(padding, height - padding);
+            ctx.lineTo(width - padding, height - padding);
+            ctx.stroke();
+
+            // Barras e labels
+            ctx.fillStyle = '#5e8c81';
+            ctx.textAlign = 'center';
+            ctx.font = '12px Arial';
+            
+            publications.forEach((value, i) => {
+                const x = padding + stepX * i + (stepX - barWidth) / 2;
+                const barHeight = value * scaleY;
+                const y = height - padding - barHeight;
+                
+                // Barra
+                ctx.fillRect(x, y, barWidth, barHeight);
+                
+                // Label hora
+                ctx.fillStyle = '#666';
+                ctx.fillText(hours[i], x + barWidth / 2, height - padding + 20);
+                
+                // Valor
+                ctx.fillStyle = '#333';
+                ctx.font = 'bold 11px Arial';
+                ctx.fillText(value, x + barWidth / 2, y - 5);
+                ctx.font = '12px Arial';
+                ctx.fillStyle = '#5e8c81';
+            });
+        }
+
+        // Responsive: Redesenhar gráficos ao redimensionar
+        window.addEventListener('resize', function() {
+            createViewsChart();
+            createCategoryChart();
+            createContentChart();
+            createHourlyChart();
+        });
+    </script>
+</body>
+</html>
