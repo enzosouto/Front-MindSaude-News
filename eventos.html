@@ -61,7 +61,35 @@
             </div>
             
             <h1 class="event-title">Workshop de Mindfulness para Iniciantes</h1>
-            
+             <!-- Feedback Block -->
+            <div class="feedback-block">
+                <div class="feedback-stats">
+                    <div class="views-counter">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        <span class="views-number">1,234</span>
+                        <span class="views-label">visualizações</span>
+                    </div>
+                    
+                    <div class="feedback-actions">
+                        <button class="feedback-btn like-btn" onclick="handleLike()">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
+                            </svg>
+                            <span class="count" id="like-count">47</span>
+                        </button>
+                        
+                        <button class="feedback-btn dislike-btn" onclick="handleDislike()">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"></path>
+                            </svg>
+                            <span class="count" id="dislike-count">3</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
             <h2 class="event-subtitle">Aprenda técnicas básicas de mindfulness em um ambiente acolhedor no centro de São Paulo</h2>
             
             <div class="event-quick-info">

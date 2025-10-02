@@ -61,24 +61,41 @@
             </div>
             
             <h1 class="article-title">Novo Centro de Saúde Mental Abre em São Paulo</h1>
-            
+            <!-- Feedback Block -->
+             
+            <div class="feedback-block">
+                <div class="feedback-stats">
+                    <div class="views-counter">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        <span class="views-number">1,234</span>
+                        <span class="views-label">visualizações</span>
+                    </div>
+                    
+                    <div class="feedback-actions">
+                        <button class="feedback-btn like-btn" onclick="handleLike()">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
+                            </svg>
+                            <span class="count" id="like-count">47</span>
+                        </button>
+                        
+                        <button class="feedback-btn dislike-btn" onclick="handleDislike()">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"></path>
+                            </svg>
+                            <span class="count" id="dislike-count">3</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
             <h2 class="article-subtitle">Inauguração do maior centro de atendimento psicológico gratuito da América Latina acontece na próxima semana com capacidade para 5 mil atendimentos mensais</h2>
             
-            <div class="article-authors">
-                <div class="author-info">
-                    <div class="author-avatar">JS</div>
-                    <div class="author-details">
-                        <span class="author-name">João Silva</span>
-                        <span class="author-role">Repórter de Saúde</span>
-                    </div>
-                </div>
-                <div class="author-info">
-                    <div class="author-avatar">MC</div>
-                    <div class="author-details">
-                        <span class="author-name">Maria Costa</span>
-                        <span class="author-role">Correspondente em São Paulo</span>
-                    </div>
-                </div>
+            <div class="article-author-info">
+                <span class="author-name">Por Dra. Ana Costa</span>
+                <span class="article-date">25 de Setembro, 2025</span>
             </div>
 
             <div class="article-social">
@@ -405,6 +422,55 @@
                 alert('Esta notícia será implementada em breve!');
             });
         });
+        // Funções de feedback
+let hasVoted = false;
+let currentVote = null;
+
+function handleLike() {
+    const likeBtn = document.querySelector('.like-btn');
+    const dislikeBtn = document.querySelector('.dislike-btn');
+    const likeCount = document.getElementById('like-count');
+    const dislikeCount = document.getElementById('dislike-count');
+    
+    if (currentVote === 'like') {
+        // Remove o like
+        likeBtn.classList.remove('active');
+        likeCount.textContent = parseInt(likeCount.textContent) - 1;
+        currentVote = null;
+    } else {
+        // Adiciona like
+        if (currentVote === 'dislike') {
+            dislikeBtn.classList.remove('active');
+            dislikeCount.textContent = parseInt(dislikeCount.textContent) - 1;
+        }
+        likeBtn.classList.add('active');
+        likeCount.textContent = parseInt(likeCount.textContent) + 1;
+        currentVote = 'like';
+    }
+}
+
+function handleDislike() {
+    const likeBtn = document.querySelector('.like-btn');
+    const dislikeBtn = document.querySelector('.dislike-btn');
+    const likeCount = document.getElementById('like-count');
+    const dislikeCount = document.getElementById('dislike-count');
+    
+    if (currentVote === 'dislike') {
+        // Remove o dislike
+        dislikeBtn.classList.remove('active');
+        dislikeCount.textContent = parseInt(dislikeCount.textContent) - 1;
+        currentVote = null;
+    } else {
+        // Adiciona dislike
+        if (currentVote === 'like') {
+            likeBtn.classList.remove('active');
+            likeCount.textContent = parseInt(likeCount.textContent) - 1;
+        }
+        dislikeBtn.classList.add('active');
+        dislikeCount.textContent = parseInt(dislikeCount.textContent) + 1;
+        currentVote = 'dislike';
+    }
+}
     </script>
 </body>
 </html>

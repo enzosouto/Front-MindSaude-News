@@ -1053,3 +1053,130 @@ html {
         padding: 20px;
     }
 }
+/* Feedback Block */
+.feedback-block {
+    margin: 25px 0 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(94, 140, 129, 0.1), rgba(94, 140, 129, 0.05));
+    border-radius: 12px;
+    border: 1px solid rgba(94, 140, 129, 0.2);
+}
+
+.feedback-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.views-counter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #5e8c81;
+}
+
+.views-counter .icon {
+    width: 24px;
+    height: 24px;
+    color: #5e8c81;
+}
+
+.views-number {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.views-label {
+    font-size: 0.95rem;
+    color: #666;
+}
+
+.feedback-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.feedback-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #666;
+}
+
+.feedback-btn .icon {
+    width: 20px;
+    height: 20px;
+    transition: all 0.3s ease;
+}
+
+.feedback-btn .count {
+    min-width: 25px;
+    text-align: center;
+}
+
+.feedback-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.like-btn:hover {
+    border-color: #5e8c81;
+    background: rgba(94, 140, 129, 0.05);
+}
+
+.like-btn.active {
+    background: #5e8c81;
+    border-color: #5e8c81;
+    color: white;
+}
+
+.like-btn.active .icon {
+    fill: white;
+    stroke: white;
+}
+
+.dislike-btn:hover {
+    border-color: #e74c3c;
+    background: rgba(231, 76, 60, 0.05);
+}
+
+.dislike-btn.active {
+    background: #e74c3c;
+    border-color: #e74c3c;
+    color: white;
+}
+
+.dislike-btn.active .icon {
+    fill: white;
+    stroke: white;
+}
+
+/* Responsive para o feedback block */
+@media (max-width: 600px) {
+    .feedback-stats {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .feedback-actions {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .views-counter {
+        width: 100%;
+        justify-content: center;
+    }
+}
